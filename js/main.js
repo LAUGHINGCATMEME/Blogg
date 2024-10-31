@@ -12,12 +12,26 @@ function loadImages() {
     fetch(`gallery/${category}/`)
       .then(response => response.text())
       .then(data => {
-        const imageFiles = data.match(/href="([^"]*\.(jpg|jpeg|png))"/g) || [];
+        // Regex to find image files
+        const imageFiles = data.match(/href="([^"]*\.(jpg|jpeg|png|heic))"/gi) || [];
+        
         imageFiles.forEach(img => {
           const imgPath = img.match(/"([^"]*)"/)[1];
+          
+          // Use the compressed image path for display
+          const compressedPath = `gallery/${category}/compressed/${imgPath}`;
+          const fullImagePath = `gallery/${category}/${imgPath}`;
+
+          // Create img element for compressed image
           const imgElement = document.createElement('img');
-          imgElement.src = `gallery/${category}/${imgPath}`;
+          imgElement.src = compressedPath;
           imgElement.alt = `${category} image`;
+
+          // Set click event to open full-size image
+          imgElement.addEventListener('click', () => {
+            window.open(fullImagePath, '_blank');
+          });
+
           categoryDiv.appendChild(imgElement);
         });
       })

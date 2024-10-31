@@ -62,8 +62,9 @@ h1 {
 }
 
 .category img {
-  width: 100%;
-  max-width: 200px;
+  width: 200px; /* Fixed width */
+  height: 150px; /* Fixed height */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
   margin: 5px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
