@@ -19,7 +19,7 @@ function loadImages() {
           const imgPath = img.match(/"([^"]*)"/)[1];
           
           // Use the compressed image path for display
-          const compressedPath = `gallery/${category}/compressed/${imgPath}`;
+          const compressedPath = `gallery/${category}/${imgPath}`;
           const fullImagePath = `gallery/${category}/${imgPath}`;
 
           // Create img element for compressed image
